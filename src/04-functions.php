@@ -35,7 +35,10 @@ function sayHelloArgument($arg)
  */
 function sayHelloArgumentWrapper($arg)
 {
-    // put your code here
+    if (gettype($arg) !== 'integer' || gettype($arg) !== 'string' || gettype($arg) !== 'boolean')
+    {
+        throw new InvalidArgumentException($arg . ' is unknown type');
+    }
 
     return sayHelloArgument($arg);
 }
@@ -48,10 +51,7 @@ function sayHelloArgumentWrapper($arg)
  */
 function countArguments()
 {
-    return [
-        'argument_count'  => func_num_args(),
-        'argument_values' => func_get_args(),
-    ];
+    return ['argument_count' => func_num_args(), 'argument_values' => func_get_args()];
 }
 
 /**
@@ -67,7 +67,22 @@ function countArguments()
  * @return array
  * @throws InvalidArgumentException
  */
-function countArgumentsWrapper()
+function countArgumentsWrapper($arg)
 {
-    // put your code here
+	$notString = false;
+
+    foreach ($arg as $value)
+    {
+        if (gettype($value) !== 'string'){
+        	$notString = true;
+        }
+    }
+
+    if ($notString)
+    {
+        throw new InvalidArgumentException('It is not a string type');
+    }
+
+    return countArguments(...$arg);
 }
+
