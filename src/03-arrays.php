@@ -5,16 +5,15 @@
  * without changing the order.
  * Example: [1,3,2] => [1,3,3,3,2,2]
  *
- * @param  array  $input
+ * @param array $input
  * @return array
  */
-function repeatArrayValues(array $input)
+function repeatArrayValues(array $input): array
 {
     $arr = [];
-    foreach ($input as $max)
-    {
-        for ($i = 0;$i < $max;$i++)
-        {
+
+    foreach ($input as $max) {
+        for ($i = 0; $i < $max; $i++) {
             $arr[] = $max;
         }
     }
@@ -26,24 +25,23 @@ function repeatArrayValues(array $input)
  * Return the lowest unique value or 0 if there is no unique values or array is empty.
  * Example: [1, 2, 3, 2, 1, 5, 6] => 3
  *
- * @param  array  $input
+ * @param array $input
  * @return int
  */
-function getUniqueValue(array $input)
+function getUniqueValue(array $input): int
 {
     $arr = [];
-    foreach ($input as $item)
-    {
+
+    foreach ($input as $item) {
         $arr[$item] = isset($arr[$item]) ? $arr[$item] + 1 : 1;
     }
+
     $minArr = [];
-    foreach ($arr as $key => $item)
-    {
-        if ($item == 1)
-        {
+
+    foreach ($arr as $key => $item) {
+        if ($item == 1) {
             $minArr[] = $key;
         }
-
     }
     return !empty($minArr) ? min($minArr) : 0;
 }
@@ -69,36 +67,28 @@ function getUniqueValue(array $input)
  *  'yellow' => ['orange', 'potato'],
  * ]
  *
- * @param  array  $input
+ * @param array $input
  * @return array
  */
 
-function groupByTag(array $input)
+function groupByTag(array $input): array
 {
     $arr = [];
 
-    foreach ($input as $item)
-    {
-        foreach ($item["tags"] as $tag)
-        {
-            if (!isset($arr[$tag]))
-            {
+    foreach ($input as $item) {
+        foreach ($item["tags"] as $tag) {
+            if (!isset($arr[$tag])) {
                 $arr[$tag] = [];
             }
             array_push($arr[$tag], $item["name"]);
-
         }
-
     }
-    
+
     $arrSorted = [];
 
-    foreach ($arr as $key => $item)
-    {
+    foreach ($arr as $key => $item) {
         sort($item);
         $arrSorted[$key] = $item;
-
     }
     return $arrSorted;
 }
-

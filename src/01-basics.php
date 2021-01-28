@@ -6,31 +6,22 @@
  * Throw InvalidArgumentException if $minute is negative of greater then 60.
  * @see https://www.php.net/manual/en/class.invalidargumentexception.php
  *
- * @param  int  $minute
+ * @param int $minute
  * @return string
  * @throws InvalidArgumentException
  */
-function getMinuteQuarter(int $minute)
+function getMinuteQuarter(int $minute): string
 {
-    if ($minute < 0 || $minute > 60)
-    {
-        throw new InvalidArgumentException($minute . '  is negative of greater then 60');
-    }
-    if ($minute > 0 && $minute <= 15)
-    {
+    if ($minute > 0 && $minute <= 15) {
         return "first";
-    }
-    elseif ($minute > 15 && $minute <= 30)
-    {
+    } elseif ($minute > 15 && $minute <= 30) {
         return "second";
-    }
-    elseif ($minute > 30 && $minute <= 45)
-    {
+    } elseif ($minute > 30 && $minute <= 45) {
         return "third";
-    }
-    elseif (($minute > 45 && $minute <= 60) || $minute == 0)
-    {
+    } elseif (($minute > 45 && $minute <= 60) || $minute == 0) {
         return "fourth";
+    } else {
+        throw new InvalidArgumentException($minute . '  is negative of greater then 60');
     }
 }
 
@@ -41,18 +32,17 @@ function getMinuteQuarter(int $minute)
  * @see https://en.wikipedia.org/wiki/Leap_year
  * @see https://www.php.net/manual/en/class.invalidargumentexception.php
  *
- * @param  int  $year
+ * @param int $year
  * @return boolean
  * @throws InvalidArgumentException
  */
-function isLeapYear(int $year)
+function isLeapYear(int $year): bool
 {
-    if ($year < 1900)
-    {
+    if ($year < 1900) {
         throw new InvalidArgumentException($year . ' is lower then 1900');
     }
-    return ((($year % 4) == 0) && ((($year % 100) != 0) || (($year % 400) == 0)));
 
+    return ((($year % 4) == 0) && ((($year % 100) != 0) || (($year % 400) == 0)));
 }
 
 /**
@@ -62,19 +52,17 @@ function isLeapYear(int $year)
  * Throw InvalidArgumentException if $input contains more then 6 digits.
  * @see https://www.php.net/manual/en/class.invalidargumentexception.php
  *
- * @param  string  $input
+ * @param string $input
  * @return boolean
  * @throws InvalidArgumentException
  */
-function isSumEqual(string $input)
+function isSumEqual(string $input): bool
 {
-    if (preg_match_all("/[0-9]/", $input) > 6)
-    {
+    if (preg_match_all("/[0-9]/", $input) > 6) {
         throw new InvalidArgumentException($input . ' contains more then 6 digits');
     }
     preg_match_all('/^\d{3}/', $input, $first);
     preg_match_all('/\d{3}$/', $input, $last);
 
     return (array_sum(str_split($first[0][0])) == array_sum(str_split($last[0][0])));
-
 }

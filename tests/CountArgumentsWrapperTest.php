@@ -10,5 +10,4 @@ class CountArgumentsWrapperTest extends TestCase
 
         countArgumentsWrapper(['test1', 'test2', 1]);
     }
-
 }

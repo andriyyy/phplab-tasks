@@ -5,7 +5,7 @@
  *
  * @return string
  */
-function sayHello()
+function sayHello(): string
 {
     return 'Hello';
 }
@@ -17,7 +17,7 @@ function sayHello()
  * @param $arg
  * @return string
  */
-function sayHelloArgument($arg)
+function sayHelloArgument($arg): string
 {
     return "Hello $arg";
 }
@@ -27,16 +27,16 @@ function sayHelloArgument($arg)
  * so that function throws an InvalidArgumentException if $arg is not: number, string or bool
  *
  * Create a PhpUnit test (SayHelloArgumentWrapperTest) which will check this behavior
- * !!! you need to test only exceptional case, since the behavior of sayHelloArgument was already tested in the task above
+ * !!! you need to test only exceptional case, since the behavior of sayHelloArgument was already tested in the
+ * task above
  *
  * @param $arg
  * @return string
  * @throws InvalidArgumentException
  */
-function sayHelloArgumentWrapper($arg)
+function sayHelloArgumentWrapper($arg): string
 {
-    if (gettype($arg) !== 'integer' || gettype($arg) !== 'string' || gettype($arg) !== 'boolean')
-    {
+    if (gettype($arg) !== 'integer' || gettype($arg) !== 'string' || gettype($arg) !== 'boolean') {
         throw new InvalidArgumentException($arg . ' is unknown type');
     }
 
@@ -49,7 +49,7 @@ function sayHelloArgumentWrapper($arg)
  *
  * @return array
  */
-function countArguments()
+function countArguments(): array
 {
     return ['argument_count' => func_num_args(), 'argument_values' => func_get_args()];
 }
@@ -63,26 +63,23 @@ function countArguments()
  *
  * You will need to use "Argument unpacking via ..." to pass the parameters to wrapped function:
  * @see https://www.php.net/manual/en/migration56.new-features.php#migration56.new-features.splat
- *
+ * @param $arg
  * @return array
  * @throws InvalidArgumentException
  */
-function countArgumentsWrapper($arg)
+function countArgumentsWrapper($arg): array
 {
-	$notString = false;
+    $notString = false;
 
-    foreach ($arg as $value)
-    {
-        if (gettype($value) !== 'string'){
-        	$notString = true;
+    foreach ($arg as $value) {
+        if (gettype($value) !== 'string') {
+            $notString = true;
         }
     }
 
-    if ($notString)
-    {
+    if ($notString) {
         throw new InvalidArgumentException('It is not a string type');
     }
 
     return countArguments(...$arg);
 }
-

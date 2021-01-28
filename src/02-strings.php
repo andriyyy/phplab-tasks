@@ -4,10 +4,10 @@
  * Transform it into camel cased string and return (i.e. helloWorld or thisIsHomeTask)
  * @see http://xahlee.info/comp/camelCase_vs_snake_case.html
  *
- * @param  string  $input
+ * @param string $input
  * @return string
  */
-function snakeCaseToCamelCase(string $input)
+function snakeCaseToCamelCase(string $input): string
 {
     return lcfirst(implode('', (array_map('ucfirst', explode('_', $input)))));
 }
@@ -17,10 +17,10 @@ function snakeCaseToCamelCase(string $input)
  * Mirror each word individually and return transformed text (i.e. 'АВЫФ ждло')
  * !!! do not change words order
  *
- * @param  string  $input
+ * @param string $input
  * @return string
  */
-function mirrorMultibyteString(string $input)
+function mirrorMultibyteString(string $input): string
 {
     return implode(' ', (array_map('mb_strrev', explode(' ', $input))));
 }
@@ -36,20 +36,13 @@ function mirrorMultibyteString(string $input)
  * europe -> Europeurope
  * Implement this logic.
  *
- * @param  string  $noun
+ * @param string $noun
  * @return string
  */
-function getBrandName(string $noun)
+function getBrandName(string $noun): string
 {
-    if (ucfirst($noun[0]) == ucfirst($noun[strlen($noun) - 1]))
-    {
+    if (ucfirst($noun[0]) == ucfirst($noun[strlen($noun) - 1])) {
         return ucfirst($noun . substr($noun, 1));
-
     }
-    else
-    {
-        return "The " . ucfirst($noun);
-    }
-
+    return "The " . ucfirst($noun);
 }
-

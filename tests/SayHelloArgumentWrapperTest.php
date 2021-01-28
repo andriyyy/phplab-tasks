@@ -9,5 +9,4 @@ class SayHelloArgumentWrapperTest extends TestCase
         $this->expectException(InvalidArgumentException::class);
         sayHelloArgumentWrapper(null);
     }
-
 }
