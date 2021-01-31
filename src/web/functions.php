@@ -6,12 +6,15 @@
  *
  * Create a PhpUnit test (GetUniqueFirstLettersTest) which will check this behavior
  *
- * @param  array  $airports
+ * @param array $airports
  * @return string[]
  */
 function getUniqueFirstLetters(array $airports)
 {
-    // put your logic here
-
-    return ['A', 'B', 'C'];
+    $arr = [];
+    foreach ($airports as $airport) {
+        $arr[] = $airport[0];
+    }
+    sort($arr);
+    return $arr;
 }
