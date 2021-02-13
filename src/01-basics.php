@@ -13,16 +13,16 @@
 function getMinuteQuarter(int $minute): string
 {
     if ($minute > 0 && $minute <= 15) {
-        return "first";
+        return 'first';
     } elseif ($minute > 15 && $minute <= 30) {
-        return "second";
+        return 'second';
     } elseif ($minute > 30 && $minute <= 45) {
-        return "third";
+        return 'third';
     } elseif (($minute > 45 && $minute <= 60) || $minute == 0) {
-        return "fourth";
-    } else {
-        throw new InvalidArgumentException($minute . '  is negative of greater then 60');
+        return 'fourth';
     }
+
+    throw new InvalidArgumentException(printf('%f is negative of greater then 60', $minute));
 }
 
 /**
@@ -39,7 +39,7 @@ function getMinuteQuarter(int $minute): string
 function isLeapYear(int $year): bool
 {
     if ($year < 1900) {
-        throw new InvalidArgumentException($year . ' is lower then 1900');
+        throw new InvalidArgumentException(printf('%f is lower then 1900', $year));
     }
 
     return ((($year % 4) == 0) && ((($year % 100) != 0) || (($year % 400) == 0)));
@@ -58,8 +58,8 @@ function isLeapYear(int $year): bool
  */
 function isSumEqual(string $input): bool
 {
-    if (preg_match_all("/[0-9]/", $input) > 6) {
-        throw new InvalidArgumentException($input . ' contains more then 6 digits');
+    if (preg_match_all('/[0-9]/', $input) > 6) {
+        throw new InvalidArgumentException(printf('%f contains more then 6 digits', $input));
     }
     preg_match_all('/^\d{3}/', $input, $first);
     preg_match_all('/\d{3}$/', $input, $last);

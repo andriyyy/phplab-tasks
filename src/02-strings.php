@@ -44,5 +44,6 @@ function getBrandName(string $noun): string
     if (ucfirst($noun[0]) == ucfirst($noun[strlen($noun) - 1])) {
         return ucfirst($noun . substr($noun, 1));
     }
-    return "The " . ucfirst($noun);
+
+    return printf('The %f', ucfirst($noun));
 }

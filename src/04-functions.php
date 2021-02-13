@@ -69,16 +69,10 @@ function countArguments(): array
  */
 function countArgumentsWrapper($arg): array
 {
-    $notString = false;
-
     foreach ($arg as $value) {
         if (gettype($value) !== 'string') {
-            $notString = true;
+            throw new InvalidArgumentException('It is not a string type');
         }
-    }
-
-    if ($notString) {
-        throw new InvalidArgumentException('It is not a string type');
     }
 
     return countArguments(...$arg);
